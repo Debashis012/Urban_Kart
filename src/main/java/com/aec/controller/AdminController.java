@@ -94,7 +94,7 @@ public class AdminController {
 	@GetMapping("/category")
 	public String category(Model m, @RequestParam(name = "pageNo", defaultValue = "0") Integer pageNo,
 			@RequestParam(name = "pageSize", defaultValue = "3") Integer pageSize) {
-		// m.addAttribute("categorys", categoryService.getAllCategory());
+		
 		Page<Category> page = categoryService.getAllCategorPagination(pageNo, pageSize);
 		List<Category> categorys = page.getContent();
 		m.addAttribute("categorys", categorys);
@@ -130,10 +130,11 @@ public class AdminController {
 				session.setAttribute("errorMsg", "internal Server Error !!!!!!! Not Saved");
 			} else {
 
+				
+				
 				File saveFile = new ClassPathResource("static/img").getFile();
-
-				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "Category_image" + File.separator
-						+ file.getOriginalFilename());
+				
+				Path path=Paths.get(saveFile.getAbsolutePath() + File.separator + "Category_image" + File.separator + file.getOriginalFilename());
 
 				System.out.println(path);
 
@@ -242,13 +243,7 @@ public class AdminController {
 			@RequestParam(name = "pageNo", defaultValue = "0") Integer pageNo,
 			@RequestParam(name = "pageSize", defaultValue = "4") Integer pageSize) {
 
-//		List<Product> products = null;
-//		if (ch != null && ch.length() > 0) {
-//			products = productService.searchProduct(ch);
-//		} else {
-//			products = productService.getAllProducts();
-//		}
-//		m.addAttribute("products", products);
+
 
 		Page<Product> page = null;
 		if (ch != null && ch.length() > 0) {

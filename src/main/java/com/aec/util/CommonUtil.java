@@ -37,7 +37,7 @@ public class CommonUtil {
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
 
-		helper.setFrom("t01666122@gmail.com", "Urban Cart");
+		helper.setFrom("debasiskr1234@gmail.com", "Urban Cart");
 		helper.setTo(reciepentEmail);
 
 		String content = "<p>Hello,</p>" + "<p>You have requested to reset your password.</p>"
@@ -71,12 +71,13 @@ public class CommonUtil {
 				+ "<p>Category : [[category]]</p>"
 				+ "<p>Quantity : [[quantity]]</p>"
 				+ "<p>Price : [[price]]</p>"
+				+"<p>TotalPrice : [[totalprice]]</p>"
 				+ "<p>Payment Type : [[paymentType]]</p>";
 		
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
 
-		helper.setFrom("t01666122@gmail.com", "Urban Cart");
+		helper.setFrom("debasiskr1234@gmail.com", "Urban Cart");
 		helper.setTo(order.getOrderAddress().getEmail());
 
 		msg=msg.replace("[[name]]",order.getOrderAddress().getFirstName());
@@ -85,6 +86,7 @@ public class CommonUtil {
 		msg=msg.replace("[[category]]", order.getProduct().getCategory());
 		msg=msg.replace("[[quantity]]", order.getQuantity().toString());
 		msg=msg.replace("[[price]]", order.getPrice().toString());
+		msg=msg.replace("[[totalprice]]", order.getTotalPrice().toString());
 		msg=msg.replace("[[paymentType]]", order.getPaymentType());
 		
 		helper.setSubject("Product Order Status");
